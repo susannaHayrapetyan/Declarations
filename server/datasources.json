@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "declarationDs": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "declarations",
+    "username": "root",
+    "password": "",
+    "name": "declarationDs",
+    "connector": "mysql"
+  }
+}

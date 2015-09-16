@@ -1,0 +1,20 @@
+<h4> 
+  <b>
+    <a ng-href="#/decDetails/{{declaration.id}}/show">
+      {{declaration.title}}      
+    </a>
+  </b> 
+</h4>
+<p> {{declaration.description}} </p>
+<p>
+  <span>
+    <span class="glyphicon glyphicon-user"></span>
+    <a ng-href="#/decDetails/{{declaration.id}}/show">
+      {{declaration.userName}}  
+    </a>
+  </span>
+  <span class="pull-right">
+    <span class="glyphicon glyphicon-time"></span>
+    {{declaration.lastModified | date:'dd-MM-yyyy HH:mm'}}
+  </span>
+</p>

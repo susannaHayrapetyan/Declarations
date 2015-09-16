@@ -1,0 +1,33 @@
+{
+  
+	"name": "Declarations",
+  
+"version": "0.0.0",
+  
+"license": "MIT",
+  
+"private": true,
+  
+"dependencies": {
+    
+"angular": "~1.4.0",
+    
+"angular-route": "~1.4.0",
+    
+"angular-loader": "~1.4.0",
+    
+"angular-mocks": "~1.4.0",
+  
+"bootstrap": "~3.0.0",
+    
+"angular-bootstrap": "0.13.1",
+    
+"jquery": "~2.0.3",
+      
+"html5-boilerplate": "~5.2.0"
+,
+"angular-ui-select": "0.12.1",
+"ngInfiniteScroll" : "1.0.0",
+"vs-google-autocomplete" : "0.3.2"
+}
+}

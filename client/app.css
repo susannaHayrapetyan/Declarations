@@ -1,0 +1,89 @@
+body{
+	color: #321e40;
+}
+input{
+	color: #321e40 !important;
+}
+textarea {
+    overflow:auto;
+    resize: none;
+}
+a, a:focus{
+	color: #68A996;
+	cursor: pointer;
+}
+a:hover{
+	color: #652D57;
+	text-decoration: none;
+}
+
+.my-btn{
+	color: #fbe2ad;
+	background-color: #652D57;
+}
+.my-btn:hover, .my-btn:focus{
+	color: #68A996;
+}
+
+.div-padding5{
+	padding: 5px;
+}
+.div-padding{
+	padding: 10px;
+}
+.show-mode-input{
+	background-color: #fff;
+	border: 0px;
+}
+.yellow-tx{
+	color: #fbe2ad;
+}
+
+.vinous-bg{
+	background-color: #652D57;
+}
+
+.thumbnail{
+	border: 2px solid #652D57;
+}
+.main-menu{
+	padding: 0px 20px;
+	background-color: #652D57;
+}
+.main-menu a{
+	background-color: #652D57 !important;
+}
+.main-menu a:hover{
+	color: #fbe2ad;
+}
+.main-menu .active a{
+	color: #fbe2ad;
+}
+.main-menu ul > li{
+	background-color: #652D57 !important;
+}
+
+.panel-vinous > .panel-heading{
+	color: #fbe2ad;
+    background-color: #652D57;
+    border-color: #652D57;
+}
+.panel-vinous{
+    border-color: #652D57;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active > a{
+	background-color: #652D57;
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: #652D57;
+}
+
+.btn-link {
+    color: #68A996;
+}
+
+.form-control:focus {
+    border-color: #68A996;
+}

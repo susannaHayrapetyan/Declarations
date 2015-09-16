@@ -1,0 +1,32 @@
+{
+  "name": "CityVillageDistrict",
+  "plural": "CityVillageDistricts",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "regionId": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "region": {
+      "type": "belongsTo",
+      "model": "Region",
+      "foreignKey": "regionId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

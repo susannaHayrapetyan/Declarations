@@ -1,0 +1,23 @@
+{
+  "name": "Security",
+  "plural": "Securities",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "String",
+      "required": true
+    },
+    "glyphicon": {
+      "type": "String",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

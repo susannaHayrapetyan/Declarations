@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "declarationDs"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Declaration": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "Security": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "Gender": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "UserAccount": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "Country": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "Region": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "CityVillageDistrict": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "Street": {
+    "dataSource": "declarationDs",
+    "public": true
+  },
+  "Address": {
+    "dataSource": "declarationDs",
+    "public": true
+  }
+}
