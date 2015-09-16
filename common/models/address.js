@@ -1,7 +1,7 @@
 module.exports = function(Address) {
 	Address.saveFullAddress = function(address, cb) {
 		var sql = 'SELECT save_full_address(';
-console.log(address)
+
 		sql += address.house ? "'" + address.house + "', " : 'NULL, '
 		sql += address.street ? "'" + address.street + "', " : 'NULL, '
 		sql += address.cityVillageDistrict ? "'" + address.cityVillageDistrict + "', " : 'NULL, '
