@@ -1,37 +1,171 @@
 {
-  "name": "UserAccount",
-  "plural": "UserAccounts",
-  "base": "User",
+  "name": "userAccount",
+  "plural": "userAccounts",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
-    "validateUpsert": true,
+    "idInjection": false,
     "mysql": {
+      "schema": "declarations",
       "table": "User"
     }
   },
   "properties": {
-    "email": {
-      "type": "string",
-      "required": true
+    "id": {
+      "type": "Number",
+      "id": 1,
+      "required": true,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "id",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "N"
+      }
+    },
+    "fbId": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 19,
+      "scale": 0,
+      "mysql": {
+        "columnName": "fb_id",
+        "dataType": "bigint",
+        "dataLength": null,
+        "dataPrecision": 19,
+        "dataScale": 0,
+        "nullable": "N"
+      }
     },
     "firstName": {
-      "type": "string",
+      "type": "String",
+      "required": false,
+      "length": 50,
+      "precision": null,
+      "scale": null,
       "mysql": {
-        "columnName": "first_name"
+        "columnName": "first_name",
+        "dataType": "varchar",
+        "dataLength": 50,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "Y"
       }
     },
     "lastName": {
-      "type": "string",
+      "type": "String",
+      "required": false,
+      "length": 100,
+      "precision": null,
+      "scale": null,
       "mysql": {
-        "columnName": "last_name"
+        "columnName": "last_name",
+        "dataType": "varchar",
+        "dataLength": 100,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "Y"
       }
     },
     "age": {
-      "type": "number"
+      "type": "Number",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "age",
+        "dataType": "int",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "Y"
+      }
+    },
+    "profilePicture": {
+      "type": "String",
+      "required": false,
+      "length": 250,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "profile_picture",
+        "dataType": "varchar",
+        "dataLength": 250,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "Y"
+      }
+    },
+    "created": {
+      "type": "Date",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "created",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "lastUpdated": {
+      "type": "Date",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "last_updated",
+        "dataType": "datetime",
+        "dataLength": null,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "email": {
+      "type": "hasMany",
+      "model": "email",
+      "foreignKey": "userId"
+    },
+    "phoneNumber": {
+      "type": "hasMany",
+      "model": "phoneNumber",
+      "foreignKey": "userId"
+    },
+    "declaration": {
+      "type": "hasMany",
+      "model": "declaration",
+      "foreignKey": "userId"
+    },
+    "token": {
+      "type": "hasMany",
+      "model": "token",
+      "foreignKey": "userId"
+    },
+    "userRelationship": {
+      "type": "hasMany",
+      "model": "userRelationship",
+      "foreignKey": "relatingUserId"
+    },
+    "userRelationship": {
+      "type": "hasMany",
+      "model": "userRelationship",
+      "foreignKey": "relatedUserId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

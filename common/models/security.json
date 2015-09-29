@@ -1,6 +1,6 @@
 {
-  "name": "Security",
-  "plural": "Securities",
+  "name": "security",
+  "plural": "securities",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,13 +11,26 @@
       "type": "String",
       "required": true
     },
-    "glyphicon": {
+    "key": {
       "type": "String",
       "required": false
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "declaration": {
+      "type": "hasMany",
+      "model": "declaration",
+      "foreignKey": "securityId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }

@@ -1,6 +1,6 @@
 {
-  "name": "Gender",
-  "plural": "Genders",
+  "name": "gender",
+  "plural": "genders",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -16,7 +16,20 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "declaration": {
+      "type": "hasMany",
+      "model": "declaration",
+      "foreignKey": "genderId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }

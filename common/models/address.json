@@ -1,19 +1,23 @@
 {
-  "name": "Address",
-  "plural": "Addresses",
+  "name": "address",
+  "plural": "addresses",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
-    "validateUpsert": true
+    "idInjection": false,
+    "mysql": {
+      "schema": "declarations",
+      "table": "address"
+    }
   },
   "properties": {
     "id": {
       "type": "Number",
-      "required": true,
+      "id": 1,
+      "required": false,
       "length": null,
       "precision": 10,
       "scale": 0,
-      "id": 1,
       "mysql": {
         "columnName": "id",
         "dataType": "int",
@@ -23,120 +27,72 @@
         "nullable": "N"
       }
     },
-    "house": {
-      "type": "String",
-      "required": false,
-      "length": 20,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "house",
-        "dataType": "varchar",
-        "dataLength": 20,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      }
-    },
-    "streetId": {
+    "declarationId": {
       "type": "Number",
-      "required": false,
+      "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
       "mysql": {
-        "columnName": "street_id",
+        "columnName": "declaration_id",
         "dataType": "int",
         "dataLength": null,
         "dataPrecision": 10,
         "dataScale": 0,
-        "nullable": "Y"
+        "nullable": "N"
       }
     },
-    "cvdId": {
+    "locationId": {
       "type": "Number",
-      "required": false,
+      "required": true,
       "length": null,
       "precision": 10,
       "scale": 0,
       "mysql": {
-        "columnName": "cvd_id",
+        "columnName": "location_id",
         "dataType": "int",
         "dataLength": null,
         "dataPrecision": 10,
         "dataScale": 0,
-        "nullable": "Y"
-      }
-    },
-    "regionId": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "mysql": {
-        "columnName": "region_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "Y"
-      }
-    },
-    "countryId": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "mysql": {
-        "columnName": "country_id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "Y"
+        "nullable": "N"
       }
     },
     "fullName": {
       "type": "String",
-      "required": false,
-      "length": 255,
+      "required": true,
+      "length": 250,
       "precision": null,
       "scale": null,
       "mysql": {
         "columnName": "full_name",
         "dataType": "varchar",
-        "dataLength": 255,
+        "dataLength": 250,
         "dataPrecision": null,
         "dataScale": null,
-        "nullable": "Y"
+        "nullable": "N"
       }
     }
   },
   "validations": [],
   "relations": {
-    "street": {
+    "declaration": {
       "type": "belongsTo",
-      "model": "Street",
-      "foreignKey": "streetId"
+      "model": "declaration",
+      "foreignKey": ""
     },
-    "cityVillageDistrict": {
+    "location": {
       "type": "belongsTo",
-      "model": "CityVillageDistrict",
-      "foreignKey": "cvdId"
-    },
-    "region": {
-      "type": "belongsTo",
-      "model": "Region",
-      "foreignKey": "regionId"
-    },
-    "country": {
-      "type": "belongsTo",
-      "model": "Country",
-      "foreignKey": "countryId"
+      "model": "location",
+      "foreignKey": ""
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }

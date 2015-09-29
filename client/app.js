@@ -1,25 +1,46 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
 angular.module('declarations', [
   	'ngRoute',
+    'ngCookies',
+    'ngAnimate',
+    'ngResource',
+    'ezfb',
     'ui.select',
+    'LocalStorageModule',
     'infinite-scroll',
     'vsGoogleAutocomplete',
   	'declarations.services',
   	'declarations.directives',
   	'declarations.home',
-  	'declarations.decDetails'
-]).
-config(['$routeProvider', function($routeProvider) {
+  	'declarations.decDetails',
+    'declarations.myProfile',
+    'declarations.myDeclarations'
+])
+.constant("URLS", {
+    "REST_API_ROOT": "/api/v1/"
+})
+.config(function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});
-}])
-.controller('mainController', ['$scope', 'usersSrv', function($scope, usersSrv){
+})
+.controller('mainController', function($rootScope, $location, usersSrv){
 
-	$scope.login = function(){
-		usersSrv.isLogged = true;
-		usersSrv.username = 'Susanna';
-		usersSrv.id = 1;
-	}
+  $rootScope.isLoggedIn = usersSrv.isLoggedIn();
+  $rootScope.currentUser = usersSrv.currentUser();
 
-}]);
+  $rootScope.$on("$routeChangeStart", function(event, next, current){
+
+    if (next && next.secure) {
+      if(!$rootScope.isLoggedIn){
+       
+        event.preventDefault();
+       
+        $rootScope.$evalAsync(function() {
+          $location.path('/home');
+        });
+      }
+    }
+
+  })
+
+});

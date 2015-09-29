@@ -1,0 +1,31 @@
+<div>
+  <div class="row">
+    <div class="col-md-2">
+      <div ng-show="declarationsList.length">
+        <button class="btn btn-lg vinous-bg yellow-tx" ng-click="dataShowType='gallery'" ng-init="dataShowType='gallery'">
+          <span class="glyphicon glyphicon-th yellow-tx"></span> 
+          <span class="yellow-tx" ng-if="dataShowType=='gallery'"> Gallery </span>
+        </button>
+
+        <button class="btn btn-lg vinous-bg yellow-tx" ng-click="dataShowType='list'">
+          <span class="glyphicon glyphicon-th-list yellow-tx"></span>
+          <span class="yellow-tx" ng-if="dataShowType=='list'"> List </span>
+        </button>
+      </div>
+      <div>
+        <p></p>
+        <a href="/#/decDetails/new" class="btn btn-lg my-btn vinous-bg yellow-tx">
+          <span class="glyphicon glyphicon-plus yellow-tx"></span>
+          Add New
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-10 div-padding5 clearfix">
+      <div class="div-padding5" ng-repeat="dec in declarationsList" ng-class="{'col-md-12': dataShowType=='list', 'col-md-4': dataShowType=='gallery'}">
+        <single-declaration class="thumbnail" data-show-type="{{dataShowType}}" data-single-declaration="{{dec}}" ></single-declaration>
+      </div>
+    </div>
+  </div>
+    
+</div>

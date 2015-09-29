@@ -23,53 +23,33 @@
           </div>
           <div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/home">Home</a></li>
-              <li><a href="#">Page 1</a></li>
-              <li><a href="#">Page 2</a></li> 
-              <li><a href="#">Page 3</a></li> 
+              <li class="active">
+                <a href="#/home">Home</a>
+              </li>
+              <li ng-if="isLoggedIn">
+                <a href="#/myProfile">My Profile</a>
+              </li>
+              <li ng-if="isLoggedIn">
+                <a ng-href="#/myDeclarations">My Declarations</a>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a data-toggle="modal" data-target="#loginModal">
-                  <span class="glyphicon glyphicon-log-in"></span> 
+              <li ng-if="!isLoggedIn">
+                <a href="/auth/facebook">
                   Login
+                </a>
+              </li>
+              <li ng-if="isLoggedIn">
+                <a href="/#/myProfile/show/logout">
+                  Logout ({{currentUser.firstName + " " + currentUser.lastName}})
                 </a>
               </li>
             </ul>
           </div>
       </nav>
-
-      <!-- Login Modal -->
-      <div class="modal fade" id="loginModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Login with Facebook</h4>
-            </div>
-            <div class="modal-body">
-              <p>This is a modal body.</p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn my-btn" ng-click="login()"> Login </button>
-            </div>
-          </div>
-        </div>
-      </div>
-  
       <div ng-view></div>
 
-      <div>Angular seed app: v<span app-version></span></div>
-
     </div>
-<!--     <ul class="menu">
-      <li><a href="#/declarationsList">declarationsList</a></li>
-      <li><a href="#/view2">view2</a></li>
-    </ul>
- -->
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
     <div class="col-md-1"></div>
   </div>
@@ -79,18 +59,32 @@
   
   <script src="bower_components/jquery/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
   <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
   <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
   <script src="bower_components/vs-google-autocomplete/dist/vs-google-autocomplete.min.js"></script>
+  <script src="bower_components/angular-easyfb/angular-easyfb.min.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  
   <script src="app.js"></script>
   <script src="services/declarationsSrv.js"></script>
-  <script src="services/filtersSrv.js"></script>
+  <script src="services/addressesSrv.js"></script>
+  <script src="services/countriesSrv.js"></script>
+  <script src="services/locationsSrv.js"></script>
+  <script src="services/gendersSrv.js"></script>
+  <script src="services/securitiesSrv.js"></script>
   <script src="services/usersSrv.js"></script>
-  <script src="components/directives.js"></script>
-  <script src="views/home/home.js"></script>
-  <script src="views/decDetails/decDetails.js"></script>
+  <script src="directives/singleDeclaration.js"></script>
+  <script src="directives/userProfile.js"></script>
+  <script src="features/home/home.js"></script>
+  <script src="features/decDetails/decDetails.js"></script>
+  <script src="features/myProfile/myProfile.js"></script>
+  <script src="features/myDeclarations/myDeclarations.js"></script>
+  
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>

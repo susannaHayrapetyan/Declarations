@@ -1,38 +1,34 @@
 angular
 .module('declarations.services', [])
-.factory('declarationsSrv', function($http) {
-	var path = 'http://localhost:3000/api/v1/';
+.factory('declarationsSrv', function($resource, $http, URLS, usersSrv) {
+	var path = URLS.REST_API_ROOT;
 
-	return{
-		getDeclarations: function(offset, limit, privacyId, genderId){
-			var filter='';
-
-			filter += privacyId ? '&filter[where][privacyId]=' + privacyId : '';
-			filter += genderId ? '&filter[where][genderId]=' + genderId : '';
-
-			filter += 'filter[limit]=' + limit;
-			filter += '&filter[skip]=' + offset;
-
-			filter += '&filter[include]=security';
-			filter += '&filter[include]=gender';
-			filter += '&filter[include]=userAccount';
-			
-			return $http({
-			    url: path + 'declarations?' + filter, 
-			    method: "GET"
-			 });
-		},
-		getDeclaration: function(id){
-			var filter='';
-
-			filter += '&filter[include]=security';
-			filter += '&filter[include]=gender';
-			filter += '&filter[include]=userAccount';
-
-			return $http({
-			    url: path + 'declarations/' + id +'?' + filter, 
-			    method: "GET"
-			 });
-		}
-	}
+	return $resource(path + 'declarations/:id', {}, 
+		{
+      		get: {
+      			method:'GET', 
+      			params:{
+					"filter[include][0]": "security",
+					"filter[include][1]": "gender",
+					"filter[include][2]": "userAccount",
+					"filter[include][3]": "address",
+					"filter[limit]": 30,
+					"filter[skip]": 0
+				},
+				transformResponse: function (data) {
+					data = angular.fromJson(data);
+					
+					if(data instanceof Array)
+						return data;
+					else 
+						return [data];
+	            },
+				isArray: true
+			},
+			save: {
+				method: "PUT",
+				headers: {'Access-token': usersSrv.currAccessToken()}
+			}
+    });
+    
 });

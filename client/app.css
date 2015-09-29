@@ -25,22 +25,34 @@ a:hover{
 	color: #68A996;
 }
 
+.circle{
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
 .div-padding5{
 	padding: 5px;
 }
 .div-padding{
 	padding: 10px;
 }
-.show-mode-input{
-	background-color: #fff;
+.show-mode-input[disabled]{
+	padding-left: 0px;
 	border: 0px;
+	cursor: auto;
+	background-color: #fff;
 }
 .yellow-tx{
 	color: #fbe2ad;
 }
-
+.blue-bg{
+	background-color: #68A996;
+}
 .vinous-bg{
 	background-color: #652D57;
+}
+.blue-bg a{
+	color: #fbe2ad;
 }
 
 .thumbnail{
@@ -86,4 +98,14 @@ a:hover{
 
 .form-control:focus {
     border-color: #68A996;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
 }

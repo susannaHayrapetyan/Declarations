@@ -2,7 +2,7 @@ var path = require('path');
 var app = require(path.resolve(__dirname, '../server'));
 
 var dataSource = app.dataSources.declarationDs;
-var table = "Region";
+var table = "UserRelation";
 
 dataSource.discoverSchema(table, {schema: 'declarations'},
     function(err, schema) {

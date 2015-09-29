@@ -1,0 +1,130 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-vinous animate-show" ng-hide="showSuccess">
+		    <div class="panel-heading">Declaration Details</div>
+		    <div class="panel-body">
+		    	<form class="form-horizontal" role="form">
+
+			    	<div class="form-group" ng-if="declaration.title || editAllowed">
+			    		<label class="col-md-3 control-label">Title</label>
+			    		<div class="col-md-7">
+				    		<input  class="form-control"
+				    				ng-class="{'show-mode-input' : !editAllowed}" 
+				    			 	ng-model="declaration.title"
+									type="text"
+									ng-disabled="!editAllowed">
+			    		</div>
+					</div>
+
+		    		<div class="form-group" ng-if="declaration.security || editAllowed">
+			    		<label class="col-md-3 control-label">Privacy</label>
+			    		<span class="col-md-7" ng-if="!editAllowed"> 
+				    		<span class="glyphicon" ng-class="declaration.security.glyphicon"></span>
+			    			{{declaration.security.name}}
+			    		</span>
+			    		<ui-select class="col-md-7" ng-model="filters.security" theme="bootstrap" ng-if="editAllowed">
+				            <ui-select-match placeholder="Select types..." allow-clear="true">
+				              {{$select.selected.name}}
+				            </ui-select-match>
+				            <ui-select-choices repeat="sec in filters.securities">
+				              {{sec.name}}
+				            </ui-select-choices>
+			          </ui-select>
+			    	</div>
+
+			    	<div class="form-group" ng-if="declaration.gender || editAllowed">
+			    		<label class="col-md-3 control-label">Preferred gender</label>
+			    		<span class="col-md-7" ng-if="!editAllowed"> 
+				    		{{declaration.gender.name}}
+			    		</span>
+						<ui-select class="col-md-7" ng-model="filters.gender" theme="bootstrap" ng-if="editAllowed">
+							<ui-select-match placeholder="Select types..." allow-clear="true">
+							  	{{$select.selected.name}}
+							</ui-select-match>
+							<ui-select-choices repeat="gender in filters.genders">
+							  	{{gender.name}}
+							</ui-select-choices>
+						</ui-select>
+			    	</div>
+
+			    	<div class="form-group" ng-if="address.fullName || editAllowed">
+			    		<label class="col-md-3 control-label">Address</label>
+			    		<div class="col-md-7">
+				    		<input  class="form-control"
+				    				ng-class="{'show-mode-input' : !editAllowed}" 
+				    			 	vs-google-autocomplete="options"
+									ng-model="address.fullName"
+									vs-place="address.place" 
+									name="address"
+									type="text"
+									ng-disabled="!editAllowed">
+			    		</div>
+					</div>
+
+			    	<div class="form-group" ng-if="declaration.description || editAllowed">
+			    		<label class="col-md-3 control-label">Description</label>
+			    		<div class="col-md-7">
+				    		<textarea 
+				    			ng-model="declaration.description" 
+				    			ng-class="{'show-mode-input' : !editAllowed}" 
+				    			rows="7" 
+				    			cols="45" 
+				    			ng-disabled="!editAllowed">
+				    		</textarea>	
+			    		</div>
+			    	</div>
+
+			    	<div class="form-group">
+			    		<div class="col-md-7 col-md-offset-3" ng-if="editAllowed">
+							<button class="btn my-btn" ng-click="saveDeclaration(declaration.id)">
+								Save
+							</button>		    		
+			    		</div>
+			    		<div class="col-md-7 col-md-offset-3" ng-if="owner && !editAllowed">
+							<button class="btn my-btn" ng-click="enableEdit(declaration.id)">
+								Edit
+							</button>		    		
+			    		</div>
+					</div>
+		    	</form>
+				    
+		    </div>
+		</div>
+		<div class="animate-show" ng-show="showSuccess">
+			<div class="yellow-tx vinous-bg thumbnail">
+				<h4>Your operation was succeed.</h4>
+			</div>
+			
+			<a href="/#/myDeclarations">
+				<b>See your declarations </b> 
+			</a>
+			<a href="/#/home">
+				<b> Go to home page</b>
+			</a>
+		</div>
+	</div>
+	<div class="col-md-5 col-md-offset-1" ng-if="declaration.userAccount">
+		<div class="panel panel-vinous">
+		    <div class="panel-heading">User Info</div>
+		    <div class="panel-body">
+		    	<user-profile 
+					data-user="{{declaration.userAccount}}" 
+					data-pic="true"
+					data-age="true"
+					>
+				</user-profile>
+				<div class="col-md-3 col-md-offset-9">
+					<a href="#/myProfile/edit" class="btn my-btn" ng-if="owner">
+						Edit Profile
+					</a>
+					<a href="#/myProfile/show" class="btn my-btn" ng-if="!owner">
+						View Profile
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		
+	</div>
+</div>

@@ -1,6 +1,6 @@
 {
-  "name": "Country",
-  "plural": "Countries",
+  "name": "country",
+  "plural": "countries",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -9,7 +9,7 @@
   "properties": {
     "id": {
       "type": "number",
-      "required": true
+      "required": false
     },
     "name": {
       "type": "string",
@@ -17,7 +17,20 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "location": {
+      "type": "hasMany",
+      "model": "location",
+      "foreignKey": "countryId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }
