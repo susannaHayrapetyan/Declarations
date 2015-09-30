@@ -57,7 +57,11 @@
           infinite-scroll-disabled="stopLoading"
           >
       <div class="div-padding5" ng-repeat="dec in declarationsList" ng-class="{'col-md-12': dataShowType=='list', 'col-md-4': dataShowType=='gallery'}">
-        <single-declaration class="thumbnail" data-show-type="{{dataShowType}}" data-single-declaration="{{dec}}" ></single-declaration>
+        <single-declaration 
+          class="thumbnail" 
+          data-show-type="{{dataShowType}}" 
+          data-single-declaration="{{dec}}">
+        </single-declaration>
       </div>
     </div>
   </div>

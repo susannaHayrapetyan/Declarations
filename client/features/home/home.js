@@ -15,15 +15,16 @@ angular.module('declarations.home', ['ngRoute'])
 
 	$scope.stopLoading = false;
 	$scope.filters = {};
+	$scope.friends = {};
 
 	var	action = $routeParams.action,
 		declarationFilters = {};
 		
 	$rootScope.$watch(usersSrv.isLoggedIn, function (isLoggedIn) {
-	    $rootScope.isLoggedIn = isLoggedIn;
+		$rootScope.isLoggedIn = isLoggedIn;
 	    $rootScope.currentUser = usersSrv.currentUser();
 
-	    usersSrv.getFriends($rootScope.currentUser.id)
+	    $scope.friends = usersSrv.getFriends($rootScope.currentUser.id)
 
 	    if(!isLoggedIn)
 	    	declarationFilters = {"filter[where][securityId]": 1};
@@ -88,9 +89,10 @@ angular.module('declarations.home', ['ngRoute'])
 		var limit = 15,
 			offset = $scope.declarationsList.length;
 	
-		declarationsSrv.get({
-			"filter[skip]": offset,
-			"filter[limit]": limit}, 
+		declarationFilters["filter[skip]"] = offset;
+		declarationFilters["filter[limit]"] = limit;
+			
+		declarationsSrv.get(declarationFilters, 
 		function(data){
 			$scope.declarationsList = $scope.declarationsList.concat(data);
 			$scope.stopLoading = false;
