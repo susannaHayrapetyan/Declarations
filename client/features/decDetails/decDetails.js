@@ -5,10 +5,7 @@ angular.module('declarations.decDetails', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/decDetails/:mode/:id?', {
     templateUrl: 'features/decDetails/decDetails.html',
-    controller: 'decDetailsCtrl',
-    access: {
-	    isFree: true
-	}
+    controller: 'decDetailsCtrl'
   });
 }])
 
@@ -78,7 +75,7 @@ function($scope, $rootScope, $routeParams, $location,
 		dec.userId = 155;
 
 		declarationsSrv.save({}, {declaration: dec}, function(data){
-			dec.id = data.id;
+			dec.id = data.declaration.id;
 
 			if(addrFullName !== $scope.address.fullName)
 				saveAddress(dec.id);
