@@ -7,7 +7,7 @@
     "callbackURL": "http://localhost:3000/auth/facebook/callback",
     "authPath": "/auth/facebook",
     "callbackPath": "/auth/facebook/callback",
-    "successRedirect": "/#/myProfile/show/login",
+    "successRedirect": "/#/home/login",
     "scope": ["public_profile", "email", "user_friends", "user_birthday", "user_photos"],
     "profileFields": ["id", "email", "last_name", "first_name", "gender", "photos", "friends"]
   }

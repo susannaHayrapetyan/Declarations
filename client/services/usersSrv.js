@@ -15,7 +15,15 @@ angular
 			}
 
 		}),
-		userIdentities = $resource(path + 'userIdentities/:id');
+		userIdentities = $resource(path + 'userIdentities/:id'),
+		userRelationship = $resource(path + 'userRelationships', {}, 
+		{
+			get: {
+      			method:'GET', 
+      			isArray: true
+			}
+
+		});
 
 	usersSrv.login = function() {
 		userIdentities.get({id: "me"}, function(data){
@@ -77,6 +85,20 @@ angular
 			return JSON.parse(user);
 
 		return {};
+	}
+
+	usersSrv.getFriends = function(userId){
+		var i, friends = [];
+
+		userRelationship.get({"filter[where][relatingUserId]": userId}, 
+			function(data){
+
+				for (i = data.length - 1; i >= 0; i--) {
+					friends.push(data[i].relatedUserId);
+				};
+			})
+
+		return friends;
 	}
 
 	return usersSrv;

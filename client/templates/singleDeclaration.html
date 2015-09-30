@@ -7,9 +7,9 @@
 </h4>
 <p> {{declaration.description}} </p>
 <p>
-  <span>
+  <span ng-if="declaration.userAccount">
     <span class="glyphicon glyphicon-user"></span>
-    <a ng-href="#/decDetails/show/{{declaration.id}}">
+    <a ng-href="#/userProfile/show/{{declaration.userAccount.id}}">
       {{declaration.userName}}  
     </a>
   </span>

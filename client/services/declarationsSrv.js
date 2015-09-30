@@ -27,7 +27,8 @@ angular
 			},
 			save: {
 				method: "PUT",
-				headers: {'Access-token': usersSrv.currAccessToken()}
+				url: path + 'declarations/updateDeclaration',
+				headers: {'Access-Token': usersSrv.currAccessToken()}
 			}
     });
     

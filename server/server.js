@@ -14,6 +14,7 @@ app.start = function() {
 };
 
 app.all('/api/v1/*', function(req, res, next){
+
   var pathname = url.parse(req.url).pathname,
       accessToken = req.headers["access-token"],
       userId,
@@ -51,6 +52,7 @@ app.all('/api/v1/*', function(req, res, next){
         else{
 
           if(userId){
+
             req.currentUserId = userId;
             next();
 
