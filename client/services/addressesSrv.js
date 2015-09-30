@@ -6,7 +6,7 @@ angular
 	return $resource(path + 'addresses/', null, {
       	save: {
       		method:'PUT',
-      		headers: {'Access-token': usersSrv.currAccessToken()}
+      		headers: {'Access-Token': usersSrv.currAccessToken()}
       	}
     });
 

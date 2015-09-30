@@ -27,7 +27,7 @@
                 <a href="#/home">Home</a>
               </li>
               <li ng-if="isLoggedIn">
-                <a href="#/myProfile">My Profile</a>
+                <a href="#/userProfile">My Profile</a>
               </li>
               <li ng-if="isLoggedIn">
                 <a ng-href="#/myDeclarations">My Declarations</a>
@@ -40,7 +40,7 @@
                 </a>
               </li>
               <li ng-if="isLoggedIn">
-                <a href="/#/myProfile/show/logout">
+                <a href="/#/home/logout">
                   Logout ({{currentUser.firstName + " " + currentUser.lastName}})
                 </a>
               </li>
@@ -80,7 +80,7 @@
   <script src="directives/userProfile.js"></script>
   <script src="features/home/home.js"></script>
   <script src="features/decDetails/decDetails.js"></script>
-  <script src="features/myProfile/myProfile.js"></script>
+  <script src="features/userProfile/userProfile.js"></script>
   <script src="features/myDeclarations/myDeclarations.js"></script>
   
   <script src="components/version/version.js"></script>
