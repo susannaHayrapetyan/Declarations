@@ -75,9 +75,9 @@ function($scope, $rootScope, $routeParams, $location,
 
 		dec.genderId = $scope.filters.gender.id;
 		dec.securityId = $scope.filters.security.id;
-		dec.userId = user.id;
+		dec.userId = 155;
 
-		declarationsSrv.save({}, dec, function(data){
+		declarationsSrv.save({}, {declaration: dec}, function(data){
 			dec.id = data.id;
 
 			if(addrFullName !== $scope.address.fullName)

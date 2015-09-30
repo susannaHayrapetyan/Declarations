@@ -3,54 +3,76 @@
 angular.module('declarations.home', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
+  $routeProvider.when('/home/:action?', {
     templateUrl: 'features/home/home.html',
-    controller: 'homeCtrl',
-    access: {
-	    isFree: true
-	}
+    controller: 'homeCtrl'
   });
 }])
 
 .controller('homeCtrl',
-	function($scope, declarationsSrv, gendersSrv, securitiesSrv, addressesSrv, countriesSrv, locationsSrv) {
+	function($scope, $routeParams, $rootScope, $location,
+		declarationsSrv, gendersSrv, securitiesSrv, addressesSrv, countriesSrv, locationsSrv, usersSrv) {
 
 	$scope.stopLoading = false;
 	$scope.filters = {};
-	
-	declarationsSrv.get({}, function(data){
-		$scope.declarationsList = data;
+
+	var	action = $routeParams.action,
+		declarationFilters = {};
+		
+	$rootScope.$watch(usersSrv.isLoggedIn, function (isLoggedIn) {
+	    $rootScope.isLoggedIn = isLoggedIn;
+	    $rootScope.currentUser = usersSrv.currentUser();
+
+	    usersSrv.getFriends($rootScope.currentUser.id)
+
+	    if(!isLoggedIn)
+	    	declarationFilters = {"filter[where][securityId]": 1};
+		else
+			declarationFilters = {
+				"filter[where][or][0][securityId]": 1,
+				"filter[where][or][1][securityId]": 3
+			}
+
+		declarationsSrv.get(declarationFilters, function(data){
+			$scope.declarationsList = data;
+		})
+
 	})
 
-	securitiesSrv
-	.get(function(data){
-		$scope.filters.securities = data;
-	})
+	if(action == "login" && !$rootScope.isLoggedIn){
+		usersSrv.login();
+
+		$location.url("/home");
+	}
+	else if(action == "logout" && $rootScope.isLoggedIn){
+		usersSrv.logout();
+		
+		$location.url("/home");
+	}
 
 	gendersSrv
 	.get(function(data){
-		$scope.filters.genders = data;
+		$scope.genders = data;
 	})
 
 	countriesSrv
 	.get(function(data){
-		$scope.filters.countries = data;
+		$scope.countries = data;
 	})
 
 	locationsSrv
 	.get(function(data){
-		$scope.filters.locations = data;
+		$scope.locations = data;
 	})
 	$scope.$watch('filters', function(){
 		
 		if(!angular.equals({}, $scope.filters)){
 			
-			var privacyId = $scope.filters.security ? $scope.filters.security.id : null,
-				genderId = $scope.filters.gender ? $scope.filters.gender.id : null;
+			var genderId = $scope.filters.gender ? $scope.filters.gender.id : null;
 
-			declarationsSrv.get({
-				"filter[where][securityId]": privacyId,
-				"filter[where][genderId]": genderId}, 
+			declarationFilters["filter[where][genderId]"] = genderId
+			
+			declarationsSrv.get(declarationFilters, 
 			function(data){
 				$scope.declarationsList = data;
 			})

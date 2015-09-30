@@ -17,22 +17,12 @@
         <div class="panel-heading">Filter Declarations</div>
         <div class="panel-body">
 
-          <label>Privacy</label>
-          <ui-select ng-model="filters.security" theme="bootstrap">
-            <ui-select-match placeholder="Select types..." allow-clear="true">
-              {{$select.selected.name}}
-            </ui-select-match>
-            <ui-select-choices repeat="sec in filters.securities">
-              {{sec.name}}
-            </ui-select-choices>
-          </ui-select>
-
           <label>Preferred gender</label>
           <ui-select ng-model="filters.gender" theme="bootstrap">
             <ui-select-match placeholder="Select types..." allow-clear="true">
               {{$select.selected.name}}
             </ui-select-match>
-            <ui-select-choices repeat="gender in filters.genders">
+            <ui-select-choices repeat="gender in genders">
               {{gender.name}}
             </ui-select-choices>
           </ui-select>
@@ -42,7 +32,7 @@
             <ui-select-match placeholder="Select types..." allow-clear="true">
               {{$select.selected.name}}
             </ui-select-match>
-            <ui-select-choices repeat="country in filters.countries">
+            <ui-select-choices repeat="country in countries">
               {{country.name}}
             </ui-select-choices>
           </ui-select>
@@ -52,7 +42,7 @@
             <ui-select-match placeholder="Select types..." allow-clear="true">
               {{$select.selected.name}}
             </ui-select-match>
-            <ui-select-choices repeat="location in filters.locations">
+            <ui-select-choices repeat="location in locations">
               {{location.name}}
             </ui-select-choices>
           </ui-select>

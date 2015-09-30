@@ -114,10 +114,10 @@
 					>
 				</user-profile>
 				<div class="col-md-3 col-md-offset-9">
-					<a href="#/myProfile/edit" class="btn my-btn" ng-if="owner">
+					<a ng-href="#/userProfile/edit/{{declaration.userAccount.id}}" class="btn my-btn" ng-if="owner">
 						Edit Profile
 					</a>
-					<a href="#/myProfile/show" class="btn my-btn" ng-if="!owner">
+					<a ng-href="#/userProfile/show/{{declaration.userAccount.id}}" class="btn my-btn" ng-if="!owner">
 						View Profile
 					</a>
 				</div>

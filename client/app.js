@@ -12,7 +12,7 @@ angular.module('declarations', [
   	'declarations.directives',
   	'declarations.home',
   	'declarations.decDetails',
-    'declarations.myProfile',
+    'declarations.userProfile',
     'declarations.myDeclarations'
 ])
 .constant("URLS", {
