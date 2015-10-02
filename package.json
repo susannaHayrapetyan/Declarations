@@ -41,5 +41,9 @@
   },
   "homepage": "https://github.com/susannaHayrapetyan/Declarations#readme",
   "main": "server/server.js",
-  "author": ""
+  "author": "",
+  "engines": {
+    "node": "0.12.x"
+  }
+
 }
